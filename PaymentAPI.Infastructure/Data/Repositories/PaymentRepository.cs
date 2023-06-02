@@ -1,10 +1,8 @@
 ﻿using Dapper;
 using Mapster;
-using Microsoft.Data.Sqlite;
 using PaymentAPI.Domain.Entities;
 using PaymentAPI.Domain.Interfaces;
 using PaymentAPI.Infastructure.Data.Models;
-using System;
 
 namespace PaymentAPI.Infastructure.Data.Repositories
 {

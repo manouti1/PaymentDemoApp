@@ -43,7 +43,7 @@ namespace PaymentAPI.Domain.Entities
                 }
             }
         }
-  
+
         public void Validate()
         {
             if (string.IsNullOrEmpty(CardholderNumber) ||
