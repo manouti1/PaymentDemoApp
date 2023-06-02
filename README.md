@@ -44,4 +44,4 @@ The MediatR library is used in this project to implement the Mediator pattern. I
 
 ## Configuration
 
-The API configuration can be modified in the `appsettings.json` file. You can specify the database connection string, logging settings, and other configuration options. I used the efcore inmemory DB for this usecase.
+The API configuration can be modified in the `appsettings.json` file. You can specify the database connection string, logging settings, and other configuration options. I used the sqlite with dapper.
