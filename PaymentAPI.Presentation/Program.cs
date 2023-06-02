@@ -4,7 +4,6 @@ using PaymentAPI.Domain.Entities;
 using PaymentAPI.Domain.Interfaces;
 using PaymentAPI.Infastructure.Data.Models;
 using PaymentAPI.Infastructure.Data.Repositories;
-using PaymentAPI.Infastructure.Data.UnitOfWorks;
 using PaymentAPI.Infastructure.Factories;
 using PaymentAPI.Presentation.Middlewares;
 using System.Text.Json.Serialization;
@@ -32,7 +31,6 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddScoped<ISqlConnectionFactory>(_ => new SqliteConnectionFactory(connectionString));
 
 builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ExceptionMiddleware<,>));
 
