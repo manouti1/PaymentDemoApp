@@ -48,6 +48,16 @@ TypeAdapterConfig<PaymentDTO, Payment>
         src.OrderReference
     ));
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:4200")
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+        });
+});
 
 var app = builder.Build();
 
@@ -70,6 +80,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-app.UseCors(options => options.AllowAnyOrigin());
+app.UseCors("AllowAllOrigins");
 
 app.Run();

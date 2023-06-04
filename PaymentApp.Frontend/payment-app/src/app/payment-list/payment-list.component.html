@@ -1,0 +1,73 @@
+<div class="mb-3">
+  <label for="statusFilter" class="form-label">Filter by Status:</label>
+  <select
+    class="form-select"
+    id="statusFilter"
+    [(ngModel)]="filterStatus"
+    (change)="onStatusFilterChange()"
+  >
+    <option value="">All</option>
+    <option value="Authorized">Authorized</option>
+    <option value="Captured">Captured</option>
+    <option value="Voided">Voided</option>
+  </select>
+</div>
+
+<div *ngIf="payments && payments.length">
+  <table class="table table-striped">
+    <thead>
+      <!-- your table header here -->
+      <tr>
+        <th>Payment ID</th>
+        <th>Amount</th>
+        <th>Currency</th>
+        <th>Cardholder Number</th>
+        <th>Holder Name</th>
+        <th>Order Reference</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let payment of payments">
+        <td>{{ payment.id }}</td>
+        <td>{{ payment.amount }}</td>
+        <td>{{ payment.currency }}</td>
+        <td>
+          {{ payment.cardholderNumber | slice : 0 : 6 }}********{{
+            payment.cardholderNumber | slice : -4
+          }}
+        </td>
+        <td>{{ payment.holderName }}</td>
+        <td>{{ payment.orderReference }}</td>
+        <td>{{ payment.status }}</td>
+        <td>
+          <button
+            class="btn btn-primary"
+            (click)="openVoidTransactionModal(payment)"
+            *ngIf="payment.status == 'Authorized'"
+          >
+            Void
+          </button>
+          <button
+            class="btn btn-success"
+            (click)="openCaptureTransactionModal(payment)"
+            *ngIf="payment.status == 'Authorized'"
+          >
+            Capture
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <pagination
+    [totalItems]="totalRecords"
+    [(ngModel)]="page"
+    [itemsPerPage]="itemsPerPage"
+    (pageChanged)="onPageChange($event.page)"
+    [maxSize]="5"
+    [boundaryLinks]="true"
+  >
+  </pagination>
+</div>

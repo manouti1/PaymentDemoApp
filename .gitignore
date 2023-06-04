@@ -766,3 +766,4 @@ dist
 
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
+PaymentApp.Frontend/payment-app/node_modules/
